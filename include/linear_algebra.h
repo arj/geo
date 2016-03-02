@@ -70,7 +70,7 @@ const Vector3 operator*(const Vector3& lhs, const double rhs);
 const Vector3 operator*(const double lhs, const Vector3& rhs);
 
 //! Simplification. Normally a point moves when translated, a vector doesn't.
-using Point3 = Vector3;
+typedef Vector3 Point3;
 
 };
 
