@@ -6,6 +6,42 @@
 
 namespace geo {
 
+Point3 Line::getStart() const
+{
+    throw std::domain_error("Infinite line does not have a start point");
+}
+
+Point3 Line::getEnd() const
+{
+    throw std::domain_error("Infinite line does not have an end point");
+}
+
+Point3 Line::getMidpoint() const
+{
+    throw std::domain_error("Infinite line does not have a mid point");
+}
+
+Point3 Line::getPoint(double parameter) const
+{
+    return _base + parameter * _direction;
+}
+
+double Line::getLength() const
+{
+    // infinity?!
+    throw std::domain_error("Infinite line does not have a length");
+}
+
+Vector3 Line::firstDerivative(double parameter) const
+{
+    return _direction;
+}
+
+Vector3 Line::secondDerivative(double parameter) const
+{
+    return Vector3::zero();
+}
+
 Line Line::createLineFromPoints(Point3 point1, Point3 point2)
 {
     if (point1 == point2)

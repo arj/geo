@@ -31,6 +31,16 @@ public:
     Vector3& operator*=(const double& scalar);
     bool operator==(const Vector3 &other) const;
 
+    bool equal(const Vector3& other, double tolerance) const;
+
+public:
+    //! Checks if the vector is the zero vector.
+    //!
+    //! \param tolerance optional tolerance for comparison with zero
+    //!
+    //! \return true if it is.
+    bool isZero(double tolerance = 0.0) const;
+
     static Vector3 origin(); // TODO only point has origin!
     static Vector3 zero();
     static Vector3 xAxis();
@@ -47,10 +57,11 @@ public:
 
 const Vector3 operator+(const Vector3& lhs, const Vector3& rhs);
 const Vector3 operator-(const Vector3& lhs, const Vector3& rhs);
-const Vector3 operator*(const Vector3& lhs, const double& rhs);
+const Vector3 operator*(const Vector3& lhs, const double rhs);
+const Vector3 operator*(const double lhs, const Vector3& rhs);
 
 //! Simplification. Normally a point moves when translated, a vector doesn't.
-typedef Vector3 Point3;
+using Point3 = Vector3;
 
 };
 

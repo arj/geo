@@ -1,15 +1,27 @@
 #ifndef PLANE_H
 #define PLANE_H
 
-#include <utility>
 #include "linear_algebra.h"
+#include "curve.h"
+
+#include <utility>
 
 namespace geo {
 
 //! The line class represents a geometrical line in threedimensional euclidean
 //! space.
-class Line {
-    
+class Line : public Curve {
+ 
+    // inherited from Curve
+public:
+    Point3 getStart() const override;
+    Point3 getEnd() const override;
+    Point3 getMidpoint() const override;
+    Point3 getPoint(double parameter) const override;
+    double getLength() const override;
+    Vector3 firstDerivative(double parameter) const override;
+    Vector3 secondDerivative(double parameter) const override;
+
 public:
     //! Create a line through two points.
     //! \param[in], point1, point2 The points the line should go throw.
@@ -52,7 +64,7 @@ public:
     std::pair<Point3, Point3> shortestDistance(const Line& line) const;
 private:
     Point3 _base;
-    Point3 _direction;
+    Vector3 _direction;
 };
 
 std::ostream& operator<<(std::ostream& output, const Line::LineRelation& lineRelation);

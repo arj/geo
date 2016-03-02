@@ -12,6 +12,8 @@ class LineTest : public CppUnit::TestFixture {
 	CPPUNIT_TEST(getDirectionTest);
 	CPPUNIT_TEST(containsTest);
 	CPPUNIT_TEST(lineRelationTest);
+	CPPUNIT_TEST(firstDerivativeTest);
+	CPPUNIT_TEST(secondDerivativeTest);
 	CPPUNIT_TEST_SUITE_END();
 
 //public:
@@ -24,6 +26,8 @@ protected:
 	void getDirectionTest();
     void containsTest();
     void lineRelationTest();
+	void firstDerivativeTest();
+	void secondDerivativeTest();
 };
 
 #endif
