@@ -18,10 +18,12 @@
 #include "test_linear_algebra.h"
 #include "test_line.h"
 #include "test_matrix.h"
+#include "test_bspline.h"
 
 CPPUNIT_TEST_SUITE_REGISTRATION(Vector3Test);
 CPPUNIT_TEST_SUITE_REGISTRATION(LineTest);
 CPPUNIT_TEST_SUITE_REGISTRATION(MatrixTest);
+CPPUNIT_TEST_SUITE_REGISTRATION(BSplineTest);
 
 int main(int argc, char** argv) {
     CPPUNIT_NS::TestRunner runner;
