@@ -80,11 +80,6 @@ bool Vector3::equal(const Vector3& other, double tolerance) const
         && nearlyEqual(this->z, other.z, tolerance);
 }
 
-Vector3 Vector3::origin()
-{
-    return Vector3(0,0,0);
-}
-
 Vector3 Vector3::zero()
 {
     return Vector3(0,0,0);
@@ -108,7 +103,12 @@ Vector3 Vector3::zAxis()
 double Vector3::length() const
 {
     return std::sqrt(x*x + y*y + z*z);
-}    
+}
+
+double Vector3::lengthSquared() const
+{
+    return x*x + y*y + z*z;
+}
 
 void Vector3::normalize()
 {

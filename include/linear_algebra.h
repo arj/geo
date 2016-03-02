@@ -13,6 +13,9 @@ public:
     
     //! \return Returns the length of the vector.
     double length() const;
+
+    //! \return Returns the squared length of the vector.
+    double lengthSquared() const;
     
     //! Normalizes the vector. The zero vector is unchanged.
     void normalize();
@@ -41,10 +44,16 @@ public:
     //! \return true if it is.
     bool isZero(double tolerance = 0.0) const;
 
-    static Vector3 origin(); // TODO only point has origin!
+    //! \return the zero vector
     static Vector3 zero();
+
+    //! \return the unit vector (1,0,0)
     static Vector3 xAxis();
+
+    //! \return the unit vector (0,1,0)
     static Vector3 yAxis();
+
+    //! \return the unit vector (0,0,1)
     static Vector3 zAxis();
 
     friend std::ostream& operator<<(std::ostream& output, const Vector3& vector);

@@ -9,13 +9,13 @@ using geo::Vector3;
 
 void LineTest::ctorTest() {
     
-    Line l1(Point3::origin(), Vector3::xAxis());
+    Line l1(Point3::zero(), Vector3::xAxis());
     
     CPPUNIT_ASSERT_THROW_MESSAGE("Expected exception for zero direction",
-        Line(Point3::origin(), Vector3::zero()),
+        Line(Point3::zero(), Vector3::zero()),
         std::invalid_argument);
         
-    Line::createLineFromPoints(Point3::origin(), Point3(1,0,0));
+    Line::createLineFromPoints(Point3::zero(), Point3(1,0,0));
     
     CPPUNIT_ASSERT_THROW_MESSAGE("Expected exception for equal points",
         Line::createLineFromPoints(Point3(1,2,3), Point3(1,2,3)),
@@ -40,18 +40,18 @@ void LineTest::getDirectionTest()
 
 void LineTest::containsTest()
 {
-    Line line = Line(Point3::origin(), Vector3::xAxis());
+    Line line = Line(Point3::zero(), Vector3::xAxis());
     
-    CPPUNIT_ASSERT_MESSAGE("(0,0,0) should be on line", line.contains(Point3::origin()));
+    CPPUNIT_ASSERT_MESSAGE("(0,0,0) should be on line", line.contains(Point3::zero()));
     CPPUNIT_ASSERT_MESSAGE("(1,0,0) should be on line", line.contains(Point3(1,0,0)));
     CPPUNIT_ASSERT_MESSAGE("(1,1,1) should not be on line", !line.contains(Point3(1,1,1)));
 }
 
 void LineTest::lineRelationTest()
 {
-    Line line(Point3::origin(), Vector3::xAxis());
+    Line line(Point3::zero(), Vector3::xAxis());
     Line lineParallel(Point3(1,0,0), Vector3::xAxis());
-    Line lineIntersecting(Point3::origin(), Vector3::yAxis());
+    Line lineIntersecting(Point3::zero(), Vector3::yAxis());
     Line lineSkew(Point3(0,0,1), Vector3::yAxis());
     
     CPPUNIT_ASSERT_EQUAL_MESSAGE("Lines should be equal", Line::LineRelation::EQUAL, line.lineRelation(line));
