@@ -12,6 +12,9 @@ namespace geo {
 //! \see http://mathworld.wolfram.com/B-Spline.html
 //! \see http://www.cs.mtu.edu/~shene/COURSES/cs3621/NOTES/spline/B-spline/bspline-ex-1.html
 //!
+//! \see http://www.cs.mtu.edu/~shene/COURSES/cs3621/NOTES/spline/B-spline/bspline-basis.html
+//! \see http://www.cs.mtu.edu/~shene/COURSES/cs3621/NOTES/spline/B-spline/bspline-derv.html
+//!
 class BSpline : public Curve
 {
 public:
