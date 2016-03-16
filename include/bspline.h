@@ -17,6 +17,8 @@ namespace geo {
 //!
 class BSpline : public Curve
 {
+    friend class BSplineTest;
+    
 public:
     //! Create a new B-Spline.
     //!
@@ -24,10 +26,11 @@ public:
     //! \pre |control_points| >= 1
     //! \pre p = |knots| - |control_points| - 1 > 0
     //!
+    //! \param degree         the degree of the bspline curve
     //! \param knots          nondecreasing list of knots [0..1] // TODO Really?
     //! \param control_points list of control_points
     //!
-    BSpline(const std::vector<double>& knots, const std::vector<Point3>& control_points);
+    BSpline(unsigned int degree, const std::vector<double>& knots, const std::vector<Point3>& control_points);
 
 
     //! Create a new B-Spline with explicit multiplicities.
@@ -39,7 +42,7 @@ public:
     //! \param knots          nondecreasing list of knots with multiplicities [0..1] // TODO Really?
     //! \param control_points list of control_points
     //!
-    BSpline(const std::vector<std::pair<double,unsigned int>>& knots, const std::vector<Point3>& control_points);
+    BSpline(unsigned int degree, const std::vector<std::pair<double,unsigned int>>& knots, const std::vector<Point3>& control_points);
 
     //! \return the degree of the bspline
     unsigned int degree() const;
@@ -53,6 +56,9 @@ public:
     double getLength() const override;
     Vector3 firstDerivative(double parameter) const override;
     Vector3 secondDerivative(double parameter) const override;
+
+    unsigned int findSpan(int n, int p, double u) const;
+    std::vector<double> basisFuns(int i, double u, int p) const;
 
 private:
     std::vector<double> m_knots;

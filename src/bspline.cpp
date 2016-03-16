@@ -4,7 +4,7 @@
 
 namespace geo {
 
-BSpline::BSpline(const std::vector<double>& knots, const std::vector<Point3>& control_points)
+BSpline::BSpline(unsigned int degree, const std::vector<double>& knots, const std::vector<Point3>& control_points)
     : m_knots(knots), m_control_points(control_points)
 {
     if (knots.size() < 2) {
@@ -15,7 +15,7 @@ BSpline::BSpline(const std::vector<double>& knots, const std::vector<Point3>& co
         throw std::invalid_argument("At least two control points are required");
     }
 
-    m_degree = knots.size() - control_points.size() - 1;
+    //m_degree = knots.size() - control_points.size() - 1;
 }
 
 unsigned int BSpline::degree() const
@@ -36,6 +36,43 @@ Point3 BSpline::getEnd() const
 Point3 BSpline::getMidpoint() const
 {
     throw std::logic_error("Not implemented yet");
+}
+
+unsigned int BSpline::findSpan(int n, int p, double u) const
+{
+    if (u == m_knots[n+1]) {
+        return n;
+    }
+    
+    // TODO Binary search might be faster
+    for (int i=p; i<=n+1; ++i) {
+        double t_i = m_knots.at(i);
+        double t_i_1 = m_knots.at(i+1);
+        
+        if (t_i <= u && u < t_i_1) {
+            return i;
+        }
+    }
+    
+    throw std::logic_error("Error");
+}
+
+std::vector<double> BSpline::basisFuns(int i, double u, int p) const
+{
+    std::vector<double> result(p, 1.0);
+    std::vector<double> left(p, 0.0);
+    std::vector<double> right(p, 0.0);
+    
+    // for (int j=0; j<p; ++j) {
+    //     left[j] = u-m_knots[i+j];
+    //     right[j] = m_knots[i+j-1]-u;
+        
+    //     double saved = 0.0;
+        
+    //     for (int r=0;r<j+1)
+    // }
+    
+    return result;
 }
 
 Point3 BSpline::getPoint(double t) const

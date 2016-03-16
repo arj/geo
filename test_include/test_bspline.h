@@ -8,6 +8,9 @@ class BSplineTest : public CppUnit::TestFixture {
     
     CPPUNIT_TEST_SUITE(BSplineTest);
 	CPPUNIT_TEST(ctorTest);
+
+// private Tests
+	CPPUNIT_TEST(findSpanTest);
 	CPPUNIT_TEST_SUITE_END();
 
 //public:
@@ -16,6 +19,7 @@ class BSplineTest : public CppUnit::TestFixture {
 
 protected:
     void ctorTest();
+    void findSpanTest();
 };
 
 #endif
